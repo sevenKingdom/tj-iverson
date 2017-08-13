@@ -40,6 +40,19 @@ public class ConstructionPlanServiceImpl implements ConstructionPlanService {
     }
 
     /**
+     * 根据工班长id获取当天计划列表
+     *
+     * @param startTime
+     * @param endTime
+     * @param classId
+     * @return
+     */
+    @Override
+    public List<ConstructionPlan> getOneDayProcessListByClassId(Long startTime, Long endTime, Long classId) {
+        return constructionPlanMapper.getOneDayProcessListByClassId(startTime, endTime, classId);
+    }
+
+    /**
      * 根据部门获取技术员id列表
      *
      * @param department

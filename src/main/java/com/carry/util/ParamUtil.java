@@ -20,4 +20,18 @@ public class ParamUtil {
 
         return result.toString().substring(0, result.length() - 1);
     }
+
+    public static String listInteger2String(List<Integer> ids){
+        StringBuffer result = new StringBuffer();
+
+        if (null == ids || ids.isEmpty()) {
+            return result.toString();
+        } else {
+            for (Integer id : ids) {
+                result.append("" + id + ",");
+            }
+        }
+
+        return result.toString().substring(0, result.length() - 1);
+    }
 }

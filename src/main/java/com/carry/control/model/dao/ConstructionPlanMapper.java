@@ -19,6 +19,9 @@ public interface ConstructionPlanMapper {
     @RequestMapping(value = "/construction-plan/save",method = RequestMethod.POST)
     long saveConstructionPlan(@RequestBody ConstructionPlan constructionPlan);
 
+    @RequestMapping(value = "/construction-plan/getOneDayProcessListByClassId")
+    List<ConstructionPlan> getOneDayProcessListByClassId(@RequestParam("startTime") Long startTime, @RequestParam("endTime") Long endTime, @RequestParam("classId") Long classId);
+
     @RequestMapping(value = "/construction-plan/getTechnicianid",method = RequestMethod.POST)
     List<Long> getTechnicianIdList(@RequestParam("department") String department);
 }
