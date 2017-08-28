@@ -24,14 +24,34 @@ public class CommonResponse<T> {
         this.data = data;
     }
 
-    public Map<String, Object> getErrorcode() {
-        return errorcode;
-    }
-
-    public void setErrorcode(Map<String, Object> errorcode) {
-        this.errorcode = errorcode;
-    }
+//    public Map<String, Object> getErrorcode() {
+//        return errorcode;
+//    }
+//
+//    public void setErrorcode(Map<String, Object> errorcode) {
+//        this.errorcode = errorcode;
+//    }
 
     T data;
-    Map<String , Object> errorcode;
+    // Map<String , Object> errorcode;
+
+    String errormessage;
+
+    public String getErrormessage() {
+        return errormessage;
+    }
+
+    public void setErrormessage(String errormessage) {
+        this.errormessage = errormessage;
+    }
+
+    public Integer getTotal_count() {
+        return total_count;
+    }
+
+    public void setTotal_count(Integer total_count) {
+        this.total_count = total_count;
+    }
+
+    public Integer total_count;
 }

@@ -2,6 +2,7 @@ package com.carry.control.service;
 
 
 import com.carry.control.model.po.ConstructionPlan;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -43,4 +44,6 @@ public interface ConstructionPlanService {
      * @return
      */
     List<Long> getTechnicianIdList(String department);
+
+    int delPlanData(long id);
 }

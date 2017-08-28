@@ -5,6 +5,7 @@ import com.carry.control.model.po.ConstructionPlan;
 import com.carry.control.service.ConstructionPlanService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -61,6 +62,11 @@ public class ConstructionPlanServiceImpl implements ConstructionPlanService {
     @Override
     public List<Long> getTechnicianIdList(String department) {
         return constructionPlanMapper.getTechnicianIdList(department);
+    }
+
+    @Override
+    public int delPlanData(long id) {
+        return constructionPlanMapper.delPlanData(id);
     }
 
 }

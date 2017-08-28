@@ -31,10 +31,8 @@ public class ConstructionPlanController {
 
         String department = verificationMapper.shortVerification(token);
         if (null == department || department.isEmpty()) {
-            Map<String, Object> errorMap = new HashMap<>();
-            errorMap.put(Constants.DATA_MESSAGE, "error");
-            errorMap.put(Constants.DATA_STATUS, Constants.ERROR_CODE);
-            commonResponse.setErrorcode(errorMap);
+            commonResponse.setStatus(400);
+            commonResponse.setErrormessage("error");
             return commonResponse;
         }
         List<Long> technicianIdList = constructionPlanService.getTechnicianIdList(department);
@@ -46,7 +44,7 @@ public class ConstructionPlanController {
         List<ConstructionPlan> constructionPlanList = constructionPlanService.getOneDayList(startTime, endTime, technicianIds);
         commonResponse.setData(constructionPlanList);
         commonResponse.setStatus(Constants.SUCCESS_CODE);
-
+        commonResponse.setTotal_count(constructionPlanList.size());
         return commonResponse;
     }
 
@@ -80,4 +78,20 @@ public class ConstructionPlanController {
         return dataMap;
     }
 
+    @RequestMapping(value = "/delPlanData", method = RequestMethod.POST)
+    public CommonResponse<Integer> delPlanData(@RequestParam("token") String token, @RequestParam("id") long id) {
+        CommonResponse responseData = new CommonResponse();
+
+        String department = verificationMapper.shortVerification(token);
+        if (department != null ) {
+
+            responseData.setData(constructionPlanService.delPlanData(id));
+
+            responseData.setStatus(200);
+        } else {
+            responseData.setStatus(400);
+            responseData.setErrormessage("用户已被删除！");
+        }
+        return responseData;
+    }
 }

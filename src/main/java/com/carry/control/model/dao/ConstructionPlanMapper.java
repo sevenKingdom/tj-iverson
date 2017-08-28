@@ -24,4 +24,7 @@ public interface ConstructionPlanMapper {
 
     @RequestMapping(value = "/construction-plan/getTechnicianid",method = RequestMethod.POST)
     List<Long> getTechnicianIdList(@RequestParam("department") String department);
+
+    @RequestMapping(value = "/construction-plan/delPlanData")
+    int delPlanData(@RequestParam("id") long id);
 }
