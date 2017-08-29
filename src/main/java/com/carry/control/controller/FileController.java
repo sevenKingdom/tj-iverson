@@ -20,8 +20,8 @@ import java.util.List;
 @Controller
 @RequestMapping(value = "/file")
 public class FileController {
-    private static final String FILE_PATH = "/Users/Seven/tempFileFolder/";
-    private static final String SHOW_URL = "http://192.168.10.177:8763/file/";
+    private static final String FILE_PATH = "/home/tjPro/imageFileFolder/";
+    private static final String SHOW_URL = "http://101.200.52.80:8763/file/";
     private final ResourceLoader resourceLoader;
 
     @Autowired

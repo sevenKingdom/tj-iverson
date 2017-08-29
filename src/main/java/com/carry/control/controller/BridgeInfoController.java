@@ -29,7 +29,7 @@ public class BridgeInfoController {
 
         //TODO:后期可以修改成上传文件解析的形式，暂时写死路径
         try {
-            String JsonContext = FileUtil.ReadFile("E:\\personal\\big_pro\\bridge\\bridgeInfo.json");
+            String JsonContext = FileUtil.ReadFile("/home/tjPro/bridgeInfo.json");
             List<BridgeInfo> bridgeInfos = JSONArray.parseArray(JsonContext, BridgeInfo.class);
             for (BridgeInfo bridgeInfo : bridgeInfos) {
                 bridgeInfoService.saveBridgeInfo(bridgeInfo);
