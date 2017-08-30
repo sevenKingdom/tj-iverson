@@ -21,6 +21,8 @@ import java.util.List;
 @RequestMapping(value = "/file")
 public class FileController {
     private static final String FILE_PATH = "/home/tjPro/imageFileFolder/";
+    //private static final String BRIDGE_JSON_PATH = "/Users/Seven/tempFileFolder/";
+    private static final String BRIDGE_JSON_PATH = "/home/tjPro/bridge_json/";
     private static final String SHOW_URL = "http://101.200.52.80:8763/file/";
     private final ResourceLoader resourceLoader;
 
@@ -31,7 +33,7 @@ public class FileController {
 
     @RequestMapping(value = "/upload")
     @ResponseBody
-    public String upload(@RequestParam("file") MultipartFile file) {
+    public String upload(@RequestParam("file") MultipartFile file, @RequestParam("bridgeFlag") Integer bridgeFlag) {
         if (file.isEmpty()) {
             return "文件为空";
         }
@@ -45,7 +47,12 @@ public class FileController {
         //String filePath = "/Users/Seven/tempFileFolder/";
         // 解决中文问题，liunx下中文路径，图片显示问题
         // fileName = UUID.randomUUID() + suffixName;
-        File dest = new File(FILE_PATH + fileName);
+        File dest;
+        if (null != bridgeFlag && 1 == bridgeFlag.intValue()) {
+            dest = new File(BRIDGE_JSON_PATH + fileName);
+        } else {
+            dest = new File(FILE_PATH + fileName);
+        }
         // 检测是否存在目录
         if (!dest.getParentFile().exists()) {
             dest.getParentFile().mkdirs();
