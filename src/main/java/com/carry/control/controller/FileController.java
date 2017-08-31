@@ -1,5 +1,6 @@
 package com.carry.control.controller;
 
+import com.carry.common.CommonResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.http.ResponseEntity;
@@ -33,9 +34,12 @@ public class FileController {
 
     @RequestMapping(value = "/upload")
     @ResponseBody
-    public String upload(@RequestParam("file") MultipartFile file, @RequestParam("bridgeFlag") Integer bridgeFlag) {
+    public CommonResponse<String> upload(@RequestParam("file") MultipartFile file, @RequestParam("bridgeFlag") Integer bridgeFlag) {
+        CommonResponse<String> commonResponse = new CommonResponse<>();
         if (file.isEmpty()) {
-            return "文件为空";
+            commonResponse.setData("文件为空");
+            commonResponse.setStatus(200);
+            return commonResponse;
         }
         // 获取文件名
         String fileName = file.getOriginalFilename();
@@ -59,13 +63,17 @@ public class FileController {
         }
         try {
             file.transferTo(dest);
-            return SHOW_URL + fileName;
+            commonResponse.setData(SHOW_URL + fileName);
+            commonResponse.setStatus(200);
+            return commonResponse;
         } catch (IllegalStateException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return "上传失败";
+        commonResponse.setData("上传失败");
+        commonResponse.setStatus(400);
+        return commonResponse;
     }
 
     //显示图片的方法关键 匹配路径像 localhost:8080/b7c76eb3-5a67-4d41-ae5c-1642af3f8746.png
